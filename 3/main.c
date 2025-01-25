@@ -19,7 +19,7 @@ int main(){
                 error = array_delete_el(&array);
             break;
             case 5:
-                error = array_subsequence_stuff(&array);
+                array_subsequence_stuff(&array);
             break;
             case 6:
                 array_print(&array);
@@ -36,6 +36,9 @@ int main(){
             break;
             case 2:
                 printf("Input error\n");
+            break;
+            case 3:
+                printf("Size error\n");
             break;
             case -1:
                 printf("Exiting...\n");
