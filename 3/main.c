@@ -4,7 +4,7 @@
 int main(){
     int menu_choice = 0, error = 0;
     Array array;
-    while((menu_choice = menu())){
+    while(menu(&menu_choice) != -1){
         switch (menu_choice) {
             case 1:
                 error = array_initialization(&array);
@@ -24,7 +24,6 @@ int main(){
             case 6:
                 array_print(&array);
                 continue;
-            break;
             default:
                 printf("Unknown menu option. Try again.\n");
                 continue;
@@ -32,10 +31,11 @@ int main(){
 
         switch (error) {
             case 1:
-                printf("Memory error\n");
+                printf("Input error\n");
             break;
             case 2:
-                printf("Input error\n");
+                printf("Memory error\n");
+                return 1;
             break;
             case 3:
                 printf("Size error\n");
@@ -48,4 +48,6 @@ int main(){
             break;
         }
     }
+    printf("Exiting...\n");
+    return 0;
 }

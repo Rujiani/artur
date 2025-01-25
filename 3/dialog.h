@@ -3,7 +3,7 @@
 #include "array.h"
 
 
-int menu();
+int menu(int *);
 int array_initialization(Array *);
 int array_change_memory_size(Array *);
 int array_insert_el(Array *);
