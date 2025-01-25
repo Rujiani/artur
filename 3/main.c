@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "dialog.h"
+#include <stdlib.h>
 
 int main(){
     int menu_choice = 0, error = 0;
@@ -35,6 +36,7 @@ int main(){
             break;
             case 2:
                 printf("Memory error\n");
+                free(array.ptr);
                 return 1;
             break;
             case 3:
@@ -42,6 +44,7 @@ int main(){
             break;
             case -1:
                 printf("Exiting...\n");
+                free(array.ptr);
                 return 0;
             default:
                 array_print(&array);
@@ -49,5 +52,6 @@ int main(){
         }
     }
     printf("Exiting...\n");
+    free(array.ptr);
     return 0;
 }

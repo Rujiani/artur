@@ -6,7 +6,7 @@ typedef struct array{
 
 int create_new_array(Array *, int);
 int change_size(Array *, int);
-int add_element(Array *, int);
+int add_element(Array *, int, int);
 int delete_element(Array *, int);
 void subsequence_stuff(Array *);
 void print(Array *);

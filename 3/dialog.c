@@ -40,11 +40,16 @@ int array_change_memory_size(Array *arr){
 
 int array_insert_el(Array *arr){
     printf("Enter index of array\n");
-    int index, err = getInt(&index);
+    int index, element, err = getInt(&index);
     if(err){
         return err;
     }
-    return add_element(arr, index);
+    printf("Enter new element\n");
+    err = getInt(&element);
+    if(err){
+        return err;
+    }
+    return add_element(arr, index, element);
 }
 
 int array_delete_el(Array *arr){
