@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "list.h"
+#include "input.h"
 
 #define CHECK_ERROR(err) \
     if (err == 1) { \
@@ -19,16 +20,18 @@ int main(){
     while((err = msg(&first_list))){
         CHECK_ERROR(err);
 
-        int N;
+        int N, rc;
         printf("Input N:\n");
-        if ((err = scanf( "%d", &N)) == -1){
-            err = 0;
-            break;
+        while ((rc = getInt(&N)) != -1) {
+            if (rc == 1) {
+                printf("Wrong format. Try again.\n");
+                continue;
+            } else {
+                int leftover;
+                while ((leftover = getchar()) != '\n' && leftover != EOF) {}
+                break;
+            }
         }
-
-        //clear garbage after scanf
-        int leftover;
-        while ((leftover = getchar()) != '\n' && leftover != EOF) { }
 
         err = break_The_Words(&first_list, &second_list, N);
 
