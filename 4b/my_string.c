@@ -46,32 +46,45 @@ char *my_strtok(char *str, const char *delim) {
     return token_start;
 }
 
+char *my_strcpy(char *dest, const char *src) {
+    char *d = dest;
+    while ((*d++ = *src++));
+    return dest;
+}
+
 char *my_readline(const char *prompt) {
     if (prompt) {
         fputs(prompt, stdout);
         fflush(stdout);
     }
-    size_t cap = 128, len = 0;
-    char *buf = (char*)malloc(cap);
-    if (!buf) return NULL;
+    char temp[128];
+    char *result = NULL;
+    size_t total_len = 0;
 
-    int c;
-    while ((c = fgetc(stdin)) != EOF && c != '\n') {
-        buf[len++] = (char)c;
-        if (len + 1 >= cap) {
-            cap *= 2;
-            char *new_buf = (char*)realloc(buf, cap);
-            if (!new_buf) {
-                free(buf);
-                return NULL;
-            }
-            buf = new_buf;
+    while (1) {
+        int ret = scanf("%127[^\n]", temp); 
+        if (ret == EOF) {
+            if (!result) return NULL;
+            break;
         }
+        if (ret == 0) {
+            int c = getchar(); 
+            if (c == EOF && !result) return NULL;
+            break;
+        }
+        size_t chunk_len = my_strlen(temp);
+        char *new_result = realloc(result, total_len + chunk_len + 1);
+        if (!new_result) {
+            free(result);
+            return NULL;
+        }
+        result = new_result;
+        my_strcpy(result + total_len, temp);
+        total_len += chunk_len;
+        int c = getchar();
+        if (c == EOF) break;
+        if (c == '\n') break;
+        ungetc(c, stdin);
     }
-    if (len == 0 && c == EOF) {
-        free(buf);
-        return NULL;
-    }
-    buf[len] = '\0';
-    return buf;
+    return result;
 }

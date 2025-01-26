@@ -52,7 +52,7 @@ int func(char* input, char **result) {
   char *token = strtok(copy, " ");
   int first = 1;
   while(token) {
-    if(strlen(token) % 2 == 1) {
+    if(strlen(token) % 2 == 0) {
       size_t need = strlen(*result) + strlen(token) + 2;
       char *temp = realloc(*result, need);
       if(!temp) {
