@@ -3,8 +3,8 @@
 
 double calculate_ln_series(double x, double alpha, double eps) {
     double sum = 0.0;
-    double power_of_x = x;
     double term;
+    double power_of_x = x;
     int n = 1;
 
     do {
@@ -21,13 +21,19 @@ double calculate_ln_series(double x, double alpha, double eps) {
 
 int main() {
     double x, alpha, epsilon;
-    scanf("%lf %lf %lf", &x, &alpha, &epsilon);
+
+    printf("Введите |x| <= 1: ");
+    scanf("%lf", &x);
+    printf("Введите alpha: ");
+    scanf("%lf", &alpha);
+    printf("Введите требуемую точность (eps): ");
+    scanf("%lf", &epsilon);
 
     double series_result = calculate_ln_series(x, alpha, epsilon);
-    double lib_result = log(1.0 - 2.0 * x * cos(alpha) + x * x);
+    double lib_result    = log(1.0 - 2.0 * x * cos(alpha) + x * x);
 
-    printf("Результат по ряду:      %.15f\n", series_result);
-    printf("Результат через log(...): %.15f\n", lib_result);
+    printf("%.15f\n", series_result);
+    printf("%.15f\n", lib_result);
 
     return 0;
 }
