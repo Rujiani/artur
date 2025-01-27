@@ -4,13 +4,6 @@
 #include "subscriber.h"
 #include <stddef.h>
 
-// Comparators for Sub, but with (const void*, const void*) signature
-int cmp_full_name_asc(const void *a, const void *b);
-int cmp_full_name_desc(const void *a, const void *b);
-int cmp_number_asc(const void *a, const void *b);
-int cmp_number_desc(const void *a, const void *b);
-int cmp_time_asc(const void *a, const void *b);
-int cmp_time_desc(const void *a, const void *b);
 
 // Select comparator by field/direction
 int (*select_cmp(int field, int direction))(const void*, const void*);
